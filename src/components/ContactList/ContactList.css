@@ -1,0 +1,12 @@
+.list{
+    list-style-type:square;
+    font-size: 22px;
+}
+.item{}
+.item__btn{
+    width: 150px;
+    margin-left: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: sandybrown;
+}

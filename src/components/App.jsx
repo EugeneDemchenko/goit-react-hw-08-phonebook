@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
-// import s from './App.module.css';
+import './App.css'
 
 
 export default class App extends Component {
@@ -40,10 +40,10 @@ export default class App extends Component {
   filterContact = () => {
     const { contacts, filter } = this.state;
     if (filter.length === 0) return contacts;
-    const filttredContacts = contacts.filter(el =>
+    const foundContacts = contacts.filter(el =>
       el.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     );
-    return filttredContacts;
+    return foundContacts;
   };
   removeContact = id => {
     this.setState(prev => ({
@@ -53,11 +53,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <div className='section'>
+        <h1 className='section__title'>Phonebook</h1>
         <ContactForm addContact={this.addContact} />
 
-        <h2>Contacts</h2>
+        <h2 className='section__title-secondary'>Contacts</h2>
         <Filter
           handleChangeForm={this.handleChangeForm}
           value={this.state.filter}

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import './Filter.css'
 
 const Filter = ({ handleChangeForm, value }) => {
   return (
@@ -8,6 +9,7 @@ const Filter = ({ handleChangeForm, value }) => {
         type="text"
         name="filter"
         value={value}
+        className='filter__input'  
     />
   );
 };

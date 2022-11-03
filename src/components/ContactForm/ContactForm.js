@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import s from './ContactForm.module.css';
+import './ContactForm.css'
 
 class ContactForm extends Component {
 
@@ -29,11 +29,11 @@ class ContactForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className='form'>
                 <label htmlFor="name">
-                    Name
+                    Name:
                     <input
-                        placeholder="Name"
+                        placeholder="Name Surname"
                         onChange={this.handleChange}
                         type="text"
                         name="name"
@@ -41,12 +41,13 @@ class ContactForm extends Component {
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         required
                         value={this.state.name}
+                        className='form__input'
                     />
                 </label>
                 <label htmlFor="number">
-                    Number
+                    Number:   
                     <input
-                        placeholder="Number"
+                        placeholder="123-45-67"
                         onChange={this.handleChange}
                         type="tel"
                         name="number"
@@ -54,10 +55,11 @@ class ContactForm extends Component {
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         required
                         value={this.state.number}
+                        className='form__input'
                     />
                 </label>
 
-                <button type="submit">
+                <button type="submit" className='form__btn'>
                     Add Contact
                 </button>
                 </form>

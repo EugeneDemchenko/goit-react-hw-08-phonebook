@@ -1,15 +1,33 @@
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from "react-redux";
+// import { useEffect } from "react";
+import { remove } from "../../redux/contactSlice";
 import './ContactList.css'
 
 
-const ContactList = ({ filterContact, removeContact }) => {
+const ContactList = () => {
+
+  const contacts = useSelector(state => state.contacts)
+  const filter = useSelector(state => state.filter)
+  const dispatch = useDispatch()
+console.log(contacts);
+  // useEffect(() => {
+  //   window.localStorage.setItem('contacts', JSON.stringify(contacts))
+  // }, [contacts])
+  
+  const filterContacts = () => {
+    if (filter.length === 0) return contacts;
+    return contacts.filter((el)=> el.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+  }
+
+  const filteredContacts = filterContacts()
+
   return (
     <ul className='list'>
-      {filterContact.map(({ name, number, id }) => {
+      {filteredContacts.map(({ name, number, id }) => {
         return (
           <li key={id} className='item'>
             {name}: {number}
-            <button type="button" onClick={() => {removeContact(id)}} className='item__btn'>
+            <button type="button" onClick={() => dispatch(remove(id))} className='item__btn'>
               Remove
             </button>
           </li>
@@ -20,14 +38,3 @@ const ContactList = ({ filterContact, removeContact }) => {
 };
 
 export default ContactList;
-
-ContactList.propTypes = {
-  filterContact: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  removeContact: PropTypes.func.isRequired,
-};

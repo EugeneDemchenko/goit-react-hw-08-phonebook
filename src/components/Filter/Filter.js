@@ -1,11 +1,14 @@
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from "react-redux";
+import {add} from '../../redux/filterSlice'
 import './Filter.css'
 
-const Filter = ({ handleChangeForm, value }) => {
+const Filter = () => {
+  const dispatch = useDispatch()
+  const value = useSelector(state => state.filter)
   return (
     <input
         placeholder="Find a contact"
-        onChange={handleChangeForm}
+        onChange={(e)=>dispatch(add(e.currentTarget.value))}
         type="text"
         name="filter"
         value={value}
@@ -15,8 +18,3 @@ const Filter = ({ handleChangeForm, value }) => {
 };
 
 export default Filter;
-
-Filter.propTypes = {
-    handleChangeForm: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
-};

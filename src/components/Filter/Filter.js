@@ -5,6 +5,7 @@ import './Filter.css'
 const Filter = () => {
   const dispatch = useDispatch()
   const value = useSelector(state => state.filter)
+  
   return (
     <input
         placeholder="Find a contact"

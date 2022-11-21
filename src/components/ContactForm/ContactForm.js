@@ -1,18 +1,26 @@
 import  { useState } from 'react';
 import { useSelector } from "react-redux";
-import {add} from '../../redux/contactSlice'
+// import {add} from '../../redux/contactSlice'
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import './ContactForm.css'
+// import { addContactApi } from '../../utils/mockApi';
+import { addContacts } from '../../redux/contactOperation';
 
 
 
 export default function ContactForm() {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
-    const contacts = useSelector(state=>state.contacts)
+    const contacts = useSelector(state=>state.contacts.contacts.item)
     const dispatch = useDispatch()
     
+    // const submitFormOperation = (data) => (dispatch, getState) => {
+    //     dispatch({ type: "submitPending" }) // state.isLoading: true
+    //     fetch()
+    //         .then(data => dispatch({ type: "submitFullfield", payload: data })) // state.contacts = payload
+    //         .catch(err => dispatch({ type: "submitErr", payload: err.message})) // state.error = payload
+    // }
 
     const handleChange = e => {
         switch (e.target.name) {
@@ -29,14 +37,13 @@ export default function ContactForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (
-            contacts.some(contact => {
-                return contact.name === name || contact.number === number;
-            })
-        ){
+        if (contacts.some(contact => {return contact.name === name || contact.number === number;})){
             return alert(`Name ${name} or Number ${number}: is already in contacts`);
         }
-        dispatch(add({name, number, id: nanoid()}))
+
+        dispatch(addContacts({name, number, id: nanoid()}))
+            // addContactApi({name, number})
+        // dispatch(add({name, number, id: nanoid()}))
         setName('');
         setNumber('')
     };

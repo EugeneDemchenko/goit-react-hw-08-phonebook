@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const handlePending = (state) => {
+    state.isLoading = true
+}
+const handleRejected = (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+}
+
 const contactsSlice = createSlice({
     name: "contacts",
     initialState: {
@@ -10,44 +18,41 @@ const contactsSlice = createSlice({
         }
     },
     reducers: {
-        addContactPending(state) {
-            state.isLoading = true;  
-        },
+        addContactPending: handlePending,
         addContactFullfield(state, action) {
             state.isLoading = false;
             state.error = null
             state.contacts.item.push(action.payload)
         },
-        addContactRejected(state, action) {
-            state.isLoading = false;
-            state.error = action.payload;
-        },
-        getContactPending(state) {
-            state.isLoading = true;
-        },
+        addContactRejected: handleRejected,
+
+        getContactPending: handlePending,
         getContactFullfield(state, action) {
             state.isLoading = false;
             state.error = null
             state.contacts.item = action.payload
         },
-        getContactRejected(state, action) {
-            state.isLoading = false;
-            state.error = action.payload;
-        },
+        getContactRejected: handleRejected,
 
-        // add: (state, action) => { return ([...state, action.payload]) },
-        remove: (state, action) => { return state.filter(el => el.id !== action.payload)},
+        removeContactPending: handlePending,
+        removeContactFullfield(state, action) {
+            state.isLoading = false;
+            state.error = null
+            state.contacts.item = state.contacts.item.filter(el => el.id !== action.payload)
+        },
+        removeContactRejected: handleRejected,
     }
 });
 
 export const {
-    // add,
-    remove,
     addContactPending,
     addContactFullfield,
     addContactRejected,
     getContactPending,
     getContactFullfield,
     getContactRejected, 
+    removeContactPending,
+    removeContactFullfield,
+    removeContactRejected, 
 } = contactsSlice.actions
 export default contactsSlice.reducer;

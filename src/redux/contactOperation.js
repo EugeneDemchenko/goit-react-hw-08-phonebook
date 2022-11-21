@@ -1,5 +1,5 @@
-import { addContactApi, getContactApi } from "../utils/mockApi";
-import { addContactPending, addContactFullfield, addContactRejected, getContactPending, getContactFullfield, getContactRejected } from "./contactSlice"
+import { addContactApi, getContactApi, removeContactApi } from "../utils/mockApi";
+import { addContactPending, addContactFullfield, addContactRejected, getContactPending, getContactFullfield, getContactRejected, removeContactPending, removeContactFullfield, removeContactRejected } from "./contactSlice"
 
 export const addContacts = (data) => (dispatch) => {
     dispatch(addContactPending());
@@ -13,4 +13,11 @@ export const fetchContacts = () => (dispatch) => {
     getContactApi()
         .then(contacts => dispatch(getContactFullfield(contacts)))
         .catch(err => dispatch(getContactRejected(err.message)))
+}
+
+export const removeContacts = (id) => (dispatch) => {
+    dispatch(removeContactPending());
+    removeContactApi(id)
+        .then(() => dispatch(removeContactFullfield(id)))
+        .catch(err => dispatch(removeContactRejected(err.message)))
 }

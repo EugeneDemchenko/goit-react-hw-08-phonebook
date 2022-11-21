@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-// import { useEffect } from "react";
-import { remove } from "../../redux/contactSlice";
+import { removeContacts } from "../../redux/contactOperation";
 import './ContactList.css'
 
 
@@ -9,10 +8,6 @@ const ContactList = () => {
   const contacts = useSelector(state => state.contacts.contacts.item)
   const filter = useSelector(state => state.filter)
   const dispatch = useDispatch()
-console.log(contacts);
-  // useEffect(() => {
-  //   window.localStorage.setItem('contacts', JSON.stringify(contacts))
-  // }, [contacts])
   
   const filterContacts = () => {
     if (filter.length === 0) return contacts;
@@ -27,7 +22,7 @@ console.log(contacts);
         return (
           <li key={id} className='item'>
             {name}: {number}
-            <button type="button" onClick={() => dispatch(remove(id))} className='item__btn'>
+            <button type="button" onClick={() => dispatch(removeContacts(id))} className='item__btn'>
               Remove
             </button>
           </li>

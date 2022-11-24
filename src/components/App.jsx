@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 export default function App() {
 
-  const [isAuth] = useState(true)
+  const [isAuth] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -23,7 +23,7 @@ export default function App() {
   return (
     isAuth ? (
       <Routes>
-        <Route path="/" element={
+        <Route path="/contacts" element={
           <div className='section'>
             <h1 className='section__title'>Phonebook</h1>
             <ContactForm/>
@@ -33,7 +33,7 @@ export default function App() {
             <ContactList/>
           </div>
         } />
-        <Route path="*" element={<Navigate to={"/"}/>}/>
+        <Route path="*" element={<Navigate to={"/contacts"}/>}/>
       </Routes>
     ) : (
       <Routes>

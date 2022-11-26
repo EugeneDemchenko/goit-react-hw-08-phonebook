@@ -6,6 +6,7 @@ import ContactList from './ContactList/ContactList';
 import { fetchContacts } from '../redux/contactOperation';
 import './App.css'
 import RegisterPage from '../pages/RegisterPage';
+import LoginPage from '../pages/LoginPage';
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useState } from 'react';
 
@@ -38,6 +39,7 @@ export default function App() {
     ) : (
       <Routes>
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate to={"/register"}/>}/>
       </Routes>
     )

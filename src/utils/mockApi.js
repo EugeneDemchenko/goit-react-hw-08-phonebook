@@ -1,14 +1,9 @@
 import axios from "axios";
-import { nanoid } from "nanoid";
 
 
 // https://connections-api.herokuapp.com - API base URL
 
-// User
-// POST /users​/signup Create a new user
-// POST ​/users​/login Login user
-// POST /users​/logout Log out user
-// GET /users​/current Get information about the current user
+
 
 // Contact
 // GET /contacts Get all user contacts
@@ -24,7 +19,7 @@ axios.defaults.baseURL = "https://connections-api.herokuapp.com"
 export const addContactApi = (form) => {
     return axios
         .post("/contacts", form)
-        .then(res=>({...form, id: nanoid()}))
+        .then(res=>({...form, id: res.data.id}))
 } 
 
 export const getContactApi = () => {
@@ -36,4 +31,17 @@ export const getContactApi = () => {
 export const removeContactApi = (id) => {
     return axios
         .delete(`/contacts/${id}`)
+}
+
+
+// User
+// POST /users​/signup Create a new user
+// POST ​/users​/login Login user
+// POST /users​/logout Log out user
+// GET /users​/current Get information about the current user
+
+
+export const registerUserApi = userData => {
+    return axios
+        .post("/users​/signup", { ...userData})
 }

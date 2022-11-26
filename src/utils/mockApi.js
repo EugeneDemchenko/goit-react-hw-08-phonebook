@@ -41,7 +41,7 @@ export const removeContactApi = (id) => {
 // GET /users​/current Get information about the current user
 
 
-export const registerUserApi = userData => {
+export const registerUserApi = (userData) => {
     return axios
-        .post("/users​/signup", { ...userData})
+        .post("/users/signup", { ...userData})
 }

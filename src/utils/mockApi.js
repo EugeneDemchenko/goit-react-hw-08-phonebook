@@ -67,17 +67,17 @@ export const registerUserApi = (userData) => {
 
 export const loginUserApi = (userData) => {
     return axios
-        .post("/users/signup", { ...userData, returnName: true })
+        .post("/users/login", { ...userData})
         .then(({ data: {
             token,
             user: {
-                password,
+                name,
                 email,
             }
         }})=> ({
             token,
             user: {
-                password,
+                name,
                 email,
             },
         }))

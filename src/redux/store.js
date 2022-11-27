@@ -23,7 +23,7 @@ export const store = configureStore({
     rootReducer,
     auth,
   },
-    middleware: [thunk, logger],
+  middleware: [thunk, logger],
     
 })
 

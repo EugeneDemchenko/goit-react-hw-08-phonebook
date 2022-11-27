@@ -1,7 +1,11 @@
 import { useState } from "react"
-import { loginUserApi } from "../utils/mockApi"
+// import { loginUserApi } from "../utils/mockApi"
+import { loginUser } from "../redux/auth/authOperations"
+import { useDispatch } from "react-redux"
+
 
 const LoginPage = () => {
+    const dispatch = useDispatch()
 
     const [form, setForm] = useState({ name: "", email: "", password: "" })
     
@@ -11,7 +15,7 @@ const LoginPage = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        loginUserApi(form)
+        dispatch(loginUser(form))
     }
 
     return <>
@@ -35,7 +39,7 @@ const LoginPage = () => {
                     onChange={handleChange} 
                     placeholder="Input your password"/>
             </label>
-            <button type="submit">Send</button>
+            <button type="submit">Sign In</button>
         </form>
     </>
 }

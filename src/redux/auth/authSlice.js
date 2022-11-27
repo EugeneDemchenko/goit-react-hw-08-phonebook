@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { registerUser } from "./authOperations";
+import { registerUser, loginUser } from "./authOperations";
 
 const handlePending = (state) => {
     state.isLoading = true
@@ -23,7 +23,16 @@ const authSlice = createSlice({
     extraReducers: {
         [registerUser.pending]: handlePending,
         [registerUser.rejected]: handleRejected,
-        [registerUser.fulfilled]: (state, { payload }) => {
+        [loginUser.pending]: handlePending,
+        [loginUser.rejected]: handleRejected,
+        [registerUser.fulfilled]: (_, { payload }) => {
+            return {
+                ...payload,
+                isLoading: false,
+                error: null,
+            }
+        },
+        [loginUser.fulfilled]: (_, { payload }) => {
             return {
                 ...payload,
                 isLoading: false,

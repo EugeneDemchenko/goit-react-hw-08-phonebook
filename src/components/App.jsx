@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useState } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
@@ -9,12 +8,15 @@ import { fetchContacts } from '../redux/contactOperation';
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
 import './App.css'
+import { getIsAuth } from '../redux/auth/authSelectors';
 
 
 
 export default function App() {
 
-  const [isAuth] = useState(false)
+  // const [isAuth] = useState(false)
+  const isAuth = useSelector(getIsAuth)
+  // const isAuth = true
 
   const dispatch = useDispatch()
 

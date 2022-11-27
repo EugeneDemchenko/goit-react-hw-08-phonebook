@@ -19,6 +19,7 @@ const authSlice = createSlice({
         token: null,
         isLoading: false,
         error: null,
+        // isLoggedIn: false,
     },
     extraReducers: {
         [registerUser.pending]: handlePending,

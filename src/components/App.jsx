@@ -9,6 +9,7 @@ import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
 import './App.css'
 import { getIsAuth } from '../redux/auth/authSelectors';
+import AppBar from './Menu/AppBar';
 
 
 
@@ -25,8 +26,9 @@ export default function App() {
     dispatch(fetchContacts())
   }, [dispatch])
 
-  return (
-    isAuth ? (
+  return (<>
+    <AppBar/>
+    {isAuth ? (
       <Routes>
         <Route path="/contacts" element={
           <div className='section'>
@@ -46,7 +48,8 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate to={"/register"}/>}/>
       </Routes>
-    )
+    )}
+    </>
   );
 }
 

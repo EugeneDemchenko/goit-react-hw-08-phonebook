@@ -1,7 +1,11 @@
 import { useState } from "react"
-import { registerUserApi } from "../utils/mockApi"
+import { useDispatch } from "react-redux"
+import { registerUser } from "../redux/auth/authOperations"
+// import { registerUserApi } from "../utils/mockApi"
 
 const RegisterPage = () => {
+
+    const dispatch = useDispatch()
 
     const [form, setForm] = useState({ name: "", email: "", password: "" })
     
@@ -11,7 +15,7 @@ const RegisterPage = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        registerUserApi(form)
+        dispatch(registerUser(form))
     }
 
     return <>

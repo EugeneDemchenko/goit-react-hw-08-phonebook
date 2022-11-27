@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import reducerContacts from './contactSlice';
 import reducerFilter from './filterSlice'
 import logger from 'redux-logger';
+import auth from './auth/authSlice';
 
 
 const rootReducer = combineReducers({
@@ -18,8 +19,12 @@ const thunk = store => next => action => {
 }
 
 export const store = configureStore({
-    reducer: rootReducer,
-    middleware: [thunk, logger]
+  reducer: {
+    rootReducer,
+    auth,
+  },
+    middleware: [thunk, logger],
+    
 })
 
 

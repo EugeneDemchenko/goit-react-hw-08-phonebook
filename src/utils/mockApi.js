@@ -43,5 +43,29 @@ export const removeContactApi = (id) => {
 
 export const registerUserApi = (userData) => {
     return axios
-        .post("/users/signup", { ...userData})
+        .post("/users/signup", { ...userData })
+        .then(({ data: {
+            token,
+            user: {
+                name,
+                email,
+            }
+        }})=> ({
+            token,
+            user: {
+                name,
+                email,
+            },
+        }))
+}
+// token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzgzMThhOGQwNDMwZTAwMTZjYmQwOTIiLCJpYXQiOjE2Njk1MzU5MTJ9.GUlSLfLABiNN19jdlKgjq2arJ2ReLFKBZUM7fhlNFtM"
+// user: {
+//     name: "qscefb11",
+//     email: "qscefb11@mail.com"
+// }
+
+
+export const loginUserApi = (userData) => {
+    return axios
+        .post("/users/login", { ...userData })
 }

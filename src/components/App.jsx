@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useState } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import { fetchContacts } from '../redux/contactOperation';
-import './App.css'
 import RegisterPage from '../pages/RegisterPage';
 import LoginPage from '../pages/LoginPage';
-import { Navigate, Route, Routes } from "react-router-dom";
-import { useState } from 'react';
+import './App.css'
+
+
 
 export default function App() {
 

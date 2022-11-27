@@ -49,14 +49,12 @@ export const registerUserApi = (userData) => {
             user: {
                 name,
                 email,
-                password,
             }
         }})=> ({
             token,
             user: {
                 name,
                 email,
-                password,
             },
         }))
 }
@@ -75,14 +73,12 @@ export const loginUserApi = (userData) => {
             user: {
                 password,
                 email,
-                name
             }
         }})=> ({
             token,
             user: {
                 password,
                 email,
-                name
             },
         }))
 }

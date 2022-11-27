@@ -49,12 +49,14 @@ export const registerUserApi = (userData) => {
             user: {
                 name,
                 email,
+                password,
             }
         }})=> ({
             token,
             user: {
                 name,
                 email,
+                password,
             },
         }))
 }
@@ -67,18 +69,20 @@ export const registerUserApi = (userData) => {
 
 export const loginUserApi = (userData) => {
     return axios
-        .post("/users/signup", { ...userData })
+        .post("/users/signup", { ...userData, returnName: true })
         .then(({ data: {
             token,
             user: {
-                name,
+                password,
                 email,
+                name
             }
         }})=> ({
             token,
             user: {
-                name,
+                password,
                 email,
+                name
             },
         }))
 }

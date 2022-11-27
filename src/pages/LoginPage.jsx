@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux"
 const LoginPage = () => {
     const dispatch = useDispatch()
 
-    const [form, setForm] = useState({ name: "", email: "", password: "" })
+    const [form, setForm] = useState({email: "", password: "" })
     
     const handleChange =(e) => {
         const { name, value } = e.target
